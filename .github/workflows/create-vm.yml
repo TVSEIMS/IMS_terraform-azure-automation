@@ -2,7 +2,7 @@ name: Create VM Workflow
 
 on:
   repository_dispatch:
-    types: [create-vm]
+    types: [vm-request]
 
 jobs:
 
