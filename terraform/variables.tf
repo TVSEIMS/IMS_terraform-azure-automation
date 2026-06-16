@@ -1,2 +1,7 @@
-variable "vm_name" {}
-variable "vm_size" {}
+variable "vm_name" {
+  type = string
+}
+
+variable "vm_size" {
+  type = string
+}
