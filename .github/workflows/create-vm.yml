@@ -1,0 +1,21 @@
+name: Create VM Workflow
+
+on:
+  repository_dispatch:
+    types: [create-vm]
+
+jobs:
+  validate:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Print Payload
+
+        run: |
+          echo "VM Name:"
+          echo "${{ github.event.client_payload.vmName }}"
+
+          echo "VM Size:"
+          echo "${{ github.event.client_payload.vmSize }}"
