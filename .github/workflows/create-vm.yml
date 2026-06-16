@@ -34,22 +34,12 @@ jobs:
 
 ---
 
-  approval:
+  terraform:
     needs: validate
     runs-on: ubuntu-latest
 
     environment:
-      name: Production
-
-    steps:
-      - name: Approval Step
-        run: echo "Request Approved Successfully"
-
----
-
-  terraform:
-    needs: approval
-    runs-on: ubuntu-latest
+      name: Production   # 👈 THIS triggers approval gate
 
     steps:
 
