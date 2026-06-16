@@ -5,17 +5,32 @@ on:
     types: [create-vm]
 
 jobs:
+
   validate:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Print Payload
-
+      - name: Validate Inputs
         run: |
-          echo "VM Name:"
-          echo "${{ github.event.client_payload.vmName }}"
 
-          echo "VM Size:"
-          echo "${{ github.event.client_payload.vmSize }}"
+          VM_NAME="${{ github.event.client_payload.vmName }}"
+          VM_SIZE="${{ github.event.client_payload.vmSize }}"
+
+          if [ -z "$VM_NAME" ]; then
+            echo "VM Name is missing"
+            exit 1
+          fi
+
+          if [ -z "$VM_SIZE" ]; then
+            echo "VM Size is missing"
+            exit 1
+          fi
+
+          echo "Validation Successful"
+
+      - name: Print Payload
+        run: |
+          echo "VM Name: ${{ github.event.client_payload.vmName }}"
+          echo "VM Size: ${{ github.event.client_payload.vmSize }}"
