@@ -7,11 +7,14 @@ on:
 jobs:
 
   validate:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Validate Inputs
         run: |
+
           VM_NAME="${{ github.event.client_payload.vmName }}"
           VM_SIZE="${{ github.event.client_payload.vmSize }}"
 
@@ -27,24 +30,16 @@ jobs:
 
           echo "Validation Successful"
 
----
+  approval:
 
-  execute:
     needs: validate
+
     runs-on: ubuntu-latest
 
     environment:
-      name: Production   # 👈 THIS triggers approval gate
+      name: Production
 
     steps:
 
-      - name: Simulate VM Provisioning
-        run: |
-          echo "VM Provisioning Started"
-          echo "VM Name: ${{ github.event.client_payload.vmName }}"
-          echo "VM Size: ${{ github.event.client_payload.vmSize }}"
-          echo "STATUS: APPROVED & PROVISIONED (SIMULATION)"
-
-      - name: Ticket Update Simulation
-        run: |
-          echo "Ticket Updated Successfully"
+      - name: Approved
+        run: echo "Request Approved Successfully"
