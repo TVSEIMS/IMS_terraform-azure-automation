@@ -1,7 +1,7 @@
-output "instance_id" {
-  value = aws_instance.app.id
+output "vm_name" {
+  value = var.vm_name
 }
 
-output "public_ip" {
-  value = aws_instance.app.public_ip
+output "vm_size" {
+  value = var.vm_size
 }
